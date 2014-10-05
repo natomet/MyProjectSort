@@ -1,19 +1,52 @@
+/**
+* <h1>Sort Test!</h1>
+*
+*<p>
+* @author  Natig Hasanov
+* @version 1.4
+* @since   2014-10-05 
+*/
+
+
+
+
+
+
+
+
+
 import java.io.*;
 import org.apache.log4j.Logger;
 import java.util.Properties;
 import java.io.IOException;
 import java.util.Enumeration;
 
-class SortTest {
+
+
+/**
+ *  The SortTest Class  implements an application that
+* simply sorts given arguments to the standard output.
+ * @author Natig Hasanov
+ *
+ */
+public class SortTest {
 	
-    /** Sort the array a[] in ascending order
-     ** using an insertion sort.
-     */
+    
 	
 	private static  Logger logger = Logger.getLogger(SortTest.class);
 	
 	
-    static void sort(int a[], int size) {
+	
+	
+	
+	
+	/**
+	 * Sort takes two arguments array and size of array
+	 * @param a : array
+	 * @param size : array size
+	 * @return nothing
+	 */
+    public static void sort(int a[], int size) {
     	logger.debug("Array is ready to be sorted");
         for (int i = 1; i < size; i++) {
           
@@ -30,7 +63,12 @@ class SortTest {
         }
     }
 
-    /** Test program to test sort */
+    /** 
+     * Test program to test sort 
+     * Reading from .properties file.Sorting it and output sorted result
+     * @param argv : takes path(location) of .properties file as an argument
+    
+     */
     public static void main(String argv[]) {
     	
 	
