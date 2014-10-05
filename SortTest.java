@@ -1,5 +1,8 @@
 import java.io.*;
-import java.util.Random;
+
+import java.util.Properties;
+import java.io.IOException;
+import java.util.Enumeration;
 
 class SortTest {
     /** Sort the array a[] in ascending order
@@ -25,30 +28,45 @@ class SortTest {
     /** Test program to test sort */
     public static void main(String argv[]) {
     	
-    	
-    	
-        int size = argv.length;
-        int test[] = new int[size];	
-    	
-        for (int k = 0; k < size; k++)
-        	test[k]= Integer.parseInt(argv[k]);
-        
-        
-    	
-        
+    	try {
+			File file = new File(argv[0]);
+			FileInputStream fileInput = new FileInputStream(file);
+			Properties properties = new Properties();
+			properties.load(fileInput);
+			fileInput.close();
 
-        System.out.println("before");
-        for (int i = 0; i < size; i++)
-            System.out.print(" " + test[i]);
-        System.out.println();
-
-        sort(test, size);
-
-        System.out.println("after");
-        for (int i = 0; i < size; i++)
-            System.out.print(" " + test[i]);
-        System.out.println();
-
-        System.exit(0);
+			
+			
+			Enumeration enuKeys = properties.keys();
+		    int elem_size = properties.size();
+		    int test[] = new int[elem_size];
+		    int iter = 0;
+			while (enuKeys.hasMoreElements()) {
+				String key = (String) enuKeys.nextElement();
+				String value = properties.getProperty(key);
+				test[iter]= Integer.parseInt(value);
+				iter++;
+			}
+	
+			
+		        
+		        sort(test, elem_size);
+		        
+		        
+		        System.out.println("Sort result :");
+		        for (int i = 0; i < elem_size; i++)
+		            System.out.print(" " + test[i]);
+		        System.out.println();
+		        
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+    	
+    	 System.exit(0);
+    	 }
+    	  
     }
-}
