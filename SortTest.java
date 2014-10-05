@@ -24,16 +24,19 @@ class SortTest {
 
     /** Test program to test sort */
     public static void main(String argv[]) {
-        if (argv.length != 1) {
-            System.out.println("usage: sort array-size");
-            System.exit(1);
-        }
-        int size = Integer.parseInt(argv[0]);
-        int test[] = new int[size];
-        Random r = new Random();
+    	
+    	
+    	
+        int size = argv.length;
+        int test[] = new int[size];	
+    	
+        for (int k = 0; k < size; k++)
+        	test[k]= Integer.parseInt(argv[k]);
+        
+        
+    	
+        
 
-        for (int i = 0; i < size; i++)
-            test[i] = (int)(r.nextFloat() * 100);
         System.out.println("before");
         for (int i = 0; i < size; i++)
             System.out.print(" " + test[i]);
