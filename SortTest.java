@@ -1,26 +1,31 @@
 import java.io.*;
-
+import org.apache.log4j.Logger;
 import java.util.Properties;
 import java.io.IOException;
 import java.util.Enumeration;
 
 class SortTest {
+	
     /** Sort the array a[] in ascending order
      ** using an insertion sort.
      */
+	
+	private static  Logger logger = Logger.getLogger(SortTest.class);
+	
+	
     static void sort(int a[], int size) {
+    	logger.debug("Array is ready to be sorted");
         for (int i = 1; i < size; i++) {
-            // a[0..i-1] is sorted
-            // insert a[i] in the proper place
+          
             int x = a[i];
             int j;
+            
             for (j = i-1; j >=0; --j) {
                 if (a[j] <= x)
                     break;
                 a[j+1] = a[j];
             }
-            // now a[0..j] are all <= x
-            // and a[j+2..i] are > x
+           
             a[j+1] = x;
         }
     }
@@ -28,7 +33,10 @@ class SortTest {
     /** Test program to test sort */
     public static void main(String argv[]) {
     	
+	
+    	
     	try {
+    		logger.info("Reading arguments from .properties file");
 			File file = new File(argv[0]);
 			FileInputStream fileInput = new FileInputStream(file);
 			Properties properties = new Properties();
@@ -36,21 +44,27 @@ class SortTest {
 			fileInput.close();
 
 			
+	
+			
 			
 			Enumeration enuKeys = properties.keys();
+			logger.warn("Attention : Enumeration is raw type");
 		    int elem_size = properties.size();
 		    int test[] = new int[elem_size];
 		    int iter = 0;
+		    logger.info("Key-value pairs in .properties file are converted to an integer type array");
 			while (enuKeys.hasMoreElements()) {
+				
 				String key = (String) enuKeys.nextElement();
 				String value = properties.getProperty(key);
 				test[iter]= Integer.parseInt(value);
 				iter++;
 			}
-	
 			
-		        
+			
+		        logger.info("Sorting is starting");
 		        sort(test, elem_size);
+		        logger.info("Sorting is finished");
 		        
 		        
 		        System.out.println("Sort result :");
@@ -61,11 +75,14 @@ class SortTest {
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			logger.error("File Not Found", e);
 		} catch (IOException e) {
 			e.printStackTrace();
+			logger.error("IO exception occured", e);
+			
 		}
 	
-    	
+    	 logger.info("FINISHED!");
     	 System.exit(0);
     	 }
     	  
